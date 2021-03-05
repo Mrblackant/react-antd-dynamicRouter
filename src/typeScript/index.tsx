@@ -1,6 +1,7 @@
 import React from 'react'
 import { Button } from 'antd'
 import { isNil, isNumber } from 'lodash'
+import './demoFirst'
 interface Iprops {
   onChange?: () => void
 }
@@ -11,7 +12,7 @@ enum Direction {
   SOUTH = '南方是我',
 }
 let dir: Direction = Direction.AAA
-console.log(dir)
+// console.log(dir)
 
 class TypeDemo extends React.Component<Iprops> {
   numAdd = () => {
