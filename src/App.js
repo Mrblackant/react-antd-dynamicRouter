@@ -1,18 +1,26 @@
-import logo from './logo.svg'
+import { Layout, Menu, Breadcrumb } from 'antd'
+import HeaderCom from './layout/header'
+import SiderMeunsCom from './layout/siderMeuns'
+import ContentCom from './layout/content'
 import './App.css'
-import TypeDemo from './typeScript'
-import HookDemo from './typeScript/hooks'
-import Context from './typeScript/createContext'
+const { SubMenu } = Menu
+const { Header, Content, Sider } = Layout
+
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <TypeDemo />
-        <h1>Hooks</h1>
-        <HookDemo />
-        <h1>createContext,父子</h1>
-        <Context />
-      </header>
+      <Layout style={{ height: '100%' }}>
+        {/* 头部 */}
+        <HeaderCom />
+        <Layout>
+          {/* 左侧菜单 */}
+          <SiderMeunsCom />
+          <Layout>
+            {/* 内容 */}
+            <ContentCom />
+          </Layout>
+        </Layout>
+      </Layout>
     </div>
   )
 }
