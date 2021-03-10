@@ -1,11 +1,11 @@
-import { Layout, Menu, Breadcrumb } from 'antd'
+import { Layout } from 'antd'
 import HeaderCom from './layout/header'
 import SiderMeunsCom from './layout/siderMeuns'
+import { createHashHistory } from 'history'
+
 import ContentCom from './layout/content'
 import './App.css'
-const { SubMenu } = Menu
-const { Header, Content, Sider } = Layout
-
+export const history = createHashHistory()
 function App() {
   return (
     <div className="App">
@@ -14,10 +14,9 @@ function App() {
         <HeaderCom />
         <Layout>
           {/* 左侧菜单 */}
-          <SiderMeunsCom />
+          <SiderMeunsCom history={history} />
           <Layout>
-            {/* 内容 */}
-            <ContentCom />
+            <ContentCom history={history} />
           </Layout>
         </Layout>
       </Layout>
