@@ -1,18 +1,15 @@
-import { Layout, Breadcrumb } from 'antd'
-import { Router, Route, Switch, Redirect } from 'react-router-dom'
+import { Layout } from 'antd'
+import { Route, Switch, Redirect } from 'react-router-dom'
+import BreadcrumbCom from './breadcrumb'
 import { tArr } from '../router/config'
+import queryString from 'query-string'
+
 const { Content } = Layout
 
-function ContentCom(props: any) {
-  console.log(props)
-  const { history } = props
+function ContentCom() {
   return (
     <div style={{ padding: '0 24px 24px' }}>
-      <Breadcrumb style={{ margin: '16px 0' }}>
-        <Breadcrumb.Item>Home</Breadcrumb.Item>
-        <Breadcrumb.Item>List</Breadcrumb.Item>
-        <Breadcrumb.Item>App</Breadcrumb.Item>
-      </Breadcrumb>
+      <BreadcrumbCom />
       <Content
         className="site-layout-background"
         style={{
@@ -21,21 +18,22 @@ function ContentCom(props: any) {
           minHeight: 280,
         }}
       >
-        <Router history={history}>
-          <Switch>
-            {tArr.map((item) => {
-              return (
-                <Route
-                  key={item.key}
-                  path={item.key}
-                  exact={item.exact}
-                  render={(props: any) => <item.component {...props} />}
-                />
-              )
-            })}
-            <Redirect to="/404" />
-          </Switch>
-        </Router>
+        <Switch>
+          {tArr.map((item) => {
+            return (
+              <Route
+                key={item.key}
+                path={item.key}
+                exact={item.exact}
+                render={(props: any) => {
+                  let searchParmas = queryString.parse(props.location.search)
+                  return <item.component {...props} {...searchParmas} />
+                }}
+              />
+            )
+          })}
+          <Redirect to="/404" />
+        </Switch>
       </Content>
     </div>
   )

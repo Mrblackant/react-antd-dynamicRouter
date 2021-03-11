@@ -10,14 +10,13 @@ interface Iprops {
 type Imeun = {
   key: string
 }
-
+console.log(navMeuns)
 function SiderMeuns(props: Iprops) {
   const { history } = props
   const { location } = history
   const [openKeys, setOpenKeys]: any[] = useState([])
 
   useEffect(() => {
-    makeFullPath(navMeuns, '')
     initOpenKeys()
   }, [])
 
@@ -48,18 +47,6 @@ function SiderMeuns(props: Iprops) {
             )}
         </SubMenu>
       )
-    })
-  }
-
-  const makeFullPath = (meunsArr: any[], parentPath: string) => {
-    meunsArr.forEach((k) => {
-      k.fullPath = parentPath ? parentPath + k.key : k.key
-      if (k.children) {
-        k.children.forEach((l: any) => {
-          l.fullPath = k.key + l.key
-          if (l.children) makeFullPath(l.children, l.fullPath)
-        })
-      }
     })
   }
 
