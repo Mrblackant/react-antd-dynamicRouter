@@ -1,20 +1,25 @@
-import { Layout, Menu, Breadcrumb } from 'antd'
-const { SubMenu } = Menu
-const { Header, Content, Sider } = Layout
+import { Layout, Menu, Dropdown } from 'antd'
+const { Header } = Layout
 
-function HeaderCom() {
+function HeaderCom(props: any) {
+  const signOut = () => {
+    window.location.href = '/login'
+  }
+  const menu = (
+    <Menu>
+      {' '}
+      <Menu.Item onClick={signOut}> 退出 </Menu.Item>
+    </Menu>
+  )
   return (
     <div className="Head">
       <Header className="header">
-        <div className="logo" style={{ color: '#fff' }}>
-          GAIA-DEMO
+        <div className="logo-line" style={{ color: '#fff' }}>
+          路由生成-DEMO
+          <Dropdown overlay={menu} placement="bottomCenter" arrow>
+            <span>用户名</span>
+          </Dropdown>
         </div>
-
-        {/* <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['2']}>
-          <Menu.Item key="1">nav 1</Menu.Item>
-          <Menu.Item key="2">nav 2</Menu.Item>
-          <Menu.Item key="3">nav 3</Menu.Item>
-        </Menu> */}
       </Header>
     </div>
   )

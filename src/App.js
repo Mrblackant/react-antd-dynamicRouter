@@ -3,11 +3,10 @@ import { Route, Switch, Redirect } from 'react-router-dom'
 import queryString from 'query-string'
 import { tArr } from './router/config'
 import LayoutCustom from './layout'
-import { createHashHistory } from 'history'
-import { Router } from 'react-router-dom'
-
+import { BrowserRouter as Router } from 'react-router-dom'
+import authConfig from './router/auth.config'
 import './App.scss'
-export const history = createHashHistory()
+
 export const RoutersCustom = () => {
   return (
     <Switch>
@@ -32,18 +31,17 @@ export const RoutersCustom = () => {
 const NormalLayout = () => {
   return (
     <Layout style={{ height: '100%' }}>
-      <LayoutCustom history={history} />
+      <LayoutCustom />
     </Layout>
   )
 }
 
 function App(props) {
-  const pathHash = window.location.hash
+  const pathname = window.location.pathname
   return (
     <div className="App-layout-wapper">
-      <Router history={history}>
-        {/* {pathHash.includes('/login') ? RoutersCustom() : NormalLayout()} */}
-        {NormalLayout()}
+      <Router>
+        {pathname.includes('/login') ? RoutersCustom() : NormalLayout()}
       </Router>
     </div>
   )

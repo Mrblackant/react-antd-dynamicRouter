@@ -1,4 +1,5 @@
 import { Layout, Menu } from 'antd'
+import { withRouter } from 'react-router-dom'
 import { navMeuns } from '../router/config'
 import _ from 'lodash'
 import { useEffect, useState } from 'react'
@@ -87,4 +88,4 @@ function SiderMeuns(props: Iprops) {
   )
 }
 
-export default SiderMeuns
+export default withRouter(SiderMeuns)
