@@ -1,15 +1,10 @@
 import { Layout } from 'antd'
-import { Route, Switch, Redirect } from 'react-router-dom'
-import BreadcrumbCom from './breadcrumb'
-import { tArr } from '../router/config'
-import queryString from 'query-string'
-
+import { RoutersCustom } from '../App'
 const { Content } = Layout
 
 function ContentCom() {
   return (
-    <div style={{ padding: '0 24px 24px' }}>
-      <BreadcrumbCom />
+    <div>
       <Content
         className="site-layout-background"
         style={{
@@ -18,22 +13,7 @@ function ContentCom() {
           minHeight: 280,
         }}
       >
-        <Switch>
-          {tArr.map((item) => {
-            return (
-              <Route
-                key={item.key}
-                path={item.key}
-                exact={item.exact}
-                render={(props: any) => {
-                  let searchParmas = queryString.parse(props.location.search)
-                  return <item.component {...props} {...searchParmas} />
-                }}
-              />
-            )
-          })}
-          <Redirect to="/404" />
-        </Switch>
+        <RoutersCustom />
       </Content>
     </div>
   )

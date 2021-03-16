@@ -1,27 +1,49 @@
 import { Layout } from 'antd'
-import HeaderCom from './layout/header'
-import SiderMeunsCom from './layout/siderMeuns'
+import { Route, Switch, Redirect } from 'react-router-dom'
+import queryString from 'query-string'
+import { tArr } from './router/config'
+import LayoutCustom from './layout'
 import { createHashHistory } from 'history'
 import { Router } from 'react-router-dom'
 
-import ContentCom from './layout/content'
 import './App.scss'
 export const history = createHashHistory()
-function App() {
+export const RoutersCustom = () => {
+  return (
+    <Switch>
+      {tArr.map((item) => {
+        return (
+          <Route
+            key={item.key}
+            path={item.key}
+            exact={item.exact}
+            render={(props) => {
+              let searchParmas = queryString.parse(props.location.search)
+              return <item.component {...props} {...searchParmas} />
+            }}
+          />
+        )
+      })}
+      <Redirect to="/404" />
+    </Switch>
+  )
+}
+
+const NormalLayout = () => {
+  return (
+    <Layout style={{ height: '100%' }}>
+      <LayoutCustom history={history} />
+    </Layout>
+  )
+}
+
+function App(props) {
+  const pathHash = window.location.hash
   return (
     <div className="App-layout-wapper">
       <Router history={history}>
-        <Layout style={{ height: '100%' }}>
-          {/* 头部 */}
-          <HeaderCom />
-          <Layout>
-            {/* 左侧菜单 */}
-            <SiderMeunsCom history={history} />
-            <Layout>
-              <ContentCom history={history} />
-            </Layout>
-          </Layout>
-        </Layout>
+        {/* {pathHash.includes('/login') ? RoutersCustom() : NormalLayout()} */}
+        {NormalLayout()}
       </Router>
     </div>
   )

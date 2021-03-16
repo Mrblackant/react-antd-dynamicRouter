@@ -4,6 +4,12 @@ import Loadable from './loadable'
 
 export const navMeuns=[
     {
+        title:'登录页',
+        key:'/login',
+        component:Loadable('login/index'),
+        hideMeun:true
+    },
+    {
         title:'首页',
         key:'/',
         component:Loadable('index/index'),

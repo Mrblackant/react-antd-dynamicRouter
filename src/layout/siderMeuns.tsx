@@ -37,6 +37,7 @@ function SiderMeuns(props: Iprops) {
   // 渲染菜单
   const showMeuns = (meunsArr: any[]) => {
     return meunsArr.map((i: any) => {
+      if (i.hideMeun) return null
       return i.component && !i.children ? (
         subMenu(i)
       ) : (
