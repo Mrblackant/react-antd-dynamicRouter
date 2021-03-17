@@ -1,4 +1,5 @@
 import { Layout, Menu, Dropdown } from 'antd'
+import { useEffect } from 'react'
 const { Header } = Layout
 
 function HeaderCom(props: any) {
@@ -11,13 +12,16 @@ function HeaderCom(props: any) {
       <Menu.Item onClick={signOut}> 退出 </Menu.Item>
     </Menu>
   )
+  // @ts-ignore
+  const useInfo: any = JSON.parse(localStorage.getItem('userInfo'))
+
   return (
     <div className="Head">
       <Header className="header">
         <div className="logo-line" style={{ color: '#fff' }}>
           路由生成-DEMO
           <Dropdown overlay={menu} placement="bottomCenter" arrow>
-            <span>用户名</span>
+            <span>{useInfo?.username || '用户名'}</span>
           </Dropdown>
         </div>
       </Header>

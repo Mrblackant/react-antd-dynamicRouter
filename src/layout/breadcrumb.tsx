@@ -1,10 +1,13 @@
 import { Breadcrumb } from 'antd'
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useContext } from 'react'
 import { withRouter } from 'react-router-dom'
-import { tArr } from '../router/config'
+import { context } from '../App'
 
 function BreadcrumbCom(props: any) {
   const [breaNameArr, setBreaNameArr]: any[] = useState([])
+  // @ts-ignore
+  const { routersArrAuth = [] as any[] } = useContext(context)
+
   const {
     history: { location },
   } = props
@@ -19,8 +22,11 @@ function BreadcrumbCom(props: any) {
 
   const initBread = (pathName: string) => {
     // 设置面包屑
-    let trgatItem = tArr.find((k) => k.key === pathName)
-    setBreaNameArr(trgatItem.fullTitle.split('/'))
+    console.log(routersArrAuth)
+    let trgatItem = routersArrAuth.find((k: any) => k.key === pathName)
+    trgatItem &&
+      trgatItem.fullTitle &&
+      setBreaNameArr(trgatItem.fullTitle.split('/'))
   }
 
   return (

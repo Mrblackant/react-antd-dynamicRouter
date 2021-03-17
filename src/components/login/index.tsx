@@ -11,10 +11,16 @@ const tailLayout = {
 }
 
 function Login(props: any) {
-  const { history } = props
   const onFinish = (values: any) => {
     if (values) {
+      const { username } = values
       window.location.href = '/'
+      let userInfo = {
+        userauth: username === 'admin' ? 's_plat_327' : null,
+        username: username,
+      }
+      // @ts-ignore
+      localStorage.setItem('userInfo', JSON.stringify(userInfo))
     }
   }
 

@@ -1,8 +1,12 @@
 import { Layout } from 'antd'
-import { RoutersCustom } from '../App'
+import { useContext } from 'react'
+import { context, RoutersCustom } from '../App'
+
 const { Content } = Layout
 
 function ContentCom() {
+  // @ts-ignore
+  const { routersArrAuth = [] as any[] } = useContext(context)
   return (
     <div>
       <Content
@@ -13,7 +17,7 @@ function ContentCom() {
           minHeight: 280,
         }}
       >
-        <RoutersCustom />
+        {RoutersCustom(routersArrAuth)}
       </Content>
     </div>
   )

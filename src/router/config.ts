@@ -1,14 +1,20 @@
 
 import Loadable from './loadable'
 
-
-export const navMeuns=[
-    {
-        title:'登录页',
-        key:'/login',
-        component:Loadable('login/index'),
-        hideMeun:true
-    },
+export const NotFound=Loadable('notFound/index')
+export let navMeuns=[
+    // {
+    //     title:'登录页',
+    //     key:'/login',
+    //     component:Loadable('login/index'),
+    //     hideMeun:true
+    // },
+    // {
+    //     title:'404',
+    //     key:'/404',
+    //     component:Loadable('notFound/index'),
+    //     hideMeun:true
+    // },
     {
         title:'首页',
         key:'/',
@@ -71,14 +77,35 @@ const makeFullPath = (meunsArr: any[], parentPath: string,parentTitle: string) =
   makeFullPath(navMeuns,'','')
 
 // 将路由组件扁平化，方便路由渲染
-export const tArr:any[]=[]
+export let routersArr:any[]=[]
 const flattenRoute=(dataArr:any[])=>{
     dataArr.map(item=>{
         if(item.component){
-            tArr.push(item)
+            routersArr.push(item)
         }
         if(item.children){flattenRoute(item.children)}
     })
 }
-flattenRoute(navMeuns)
 
+
+// 权限处理
+export const authFun=(noShowArr:any[])=>{
+    function del(arr:any[],noShowData:any[]){
+        return arr.filter(item => !noShowData.includes(item.key)).map(item => {
+            item = Object.assign({}, item)
+            if (item.children) {
+              item.children = del(item.children, noShowData)
+            }
+            return item
+          })
+        }
+    navMeuns=del(navMeuns,noShowArr)
+    flattenRoute(navMeuns)
+    console.log(routersArr)
+
+    return {
+        navMeuns,
+        routersArr
+    }
+
+}
