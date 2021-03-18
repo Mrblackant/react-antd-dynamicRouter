@@ -3,7 +3,7 @@ import { Route, Switch, Redirect } from 'react-router-dom'
 import { createContext } from 'react'
 import _ from 'lodash'
 import queryString from 'query-string'
-import { authFun, NotFound } from './router/config'
+import { authFun, NotFound, Login } from './router/config'
 import LayoutCustom from './layout'
 import { BrowserRouter as Router } from 'react-router-dom'
 import authConfig from './router/auth.config'
@@ -28,7 +28,6 @@ export const RoutersCustom = (arrs) => {
           />
         )
       })}
-      <Route path="/404" component={NotFound} />
       <Redirect to="/404" />
     </Switch>
   )
@@ -69,15 +68,16 @@ function App(props) {
     setRoutersArrConstom(routersArr)
   }
   console.log(pathname)
-  console.log(_.includes(['/login', '/404'], pathname))
   return (
     <div className="App-layout-wapper">
       {routersArrAuth.length && (
         <context.Provider value={{ navMeunsAuth, routersArrAuth }}>
           <Router>
-            {_.includes(['/login'], pathname)
-              ? RoutersCustom(routersArrAuth)
-              : NormalLayout()}
+            <Switch>
+              <Route path="/login" component={Login} />
+              <Route path="/404" component={NotFound} />
+              <Route component={NormalLayout} />
+            </Switch>
           </Router>
         </context.Provider>
       )}
