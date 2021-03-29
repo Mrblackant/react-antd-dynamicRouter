@@ -1,6 +1,6 @@
 import { Breadcrumb } from 'antd'
 import { useEffect, useState, useContext } from 'react'
-import { withRouter } from 'react-router-dom'
+import { withRouter, Link } from 'react-router-dom'
 import { context } from '../App'
 
 function BreadcrumbCom(props: any) {
@@ -32,6 +32,9 @@ function BreadcrumbCom(props: any) {
   return (
     <div className="bread-wapper">
       <Breadcrumb className="top-meun">
+        <Breadcrumb.Item>
+          <Link to="/">首页</Link>
+        </Breadcrumb.Item>
         {breaNameArr.map((i: string) => (
           <Breadcrumb.Item key={i}>{i}</Breadcrumb.Item>
         ))}

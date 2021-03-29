@@ -3,6 +3,8 @@ import { withRouter } from 'react-router-dom'
 import { navMeuns } from '../router/config'
 import _ from 'lodash'
 import { useEffect, useState } from 'react'
+import { LayoutContext } from './index'
+
 const { Sider } = Layout
 const { SubMenu } = Menu
 interface Iprops {
@@ -74,17 +76,29 @@ function SiderMeuns(props: Iprops) {
   }
 
   return (
-    <Sider width={200} className="site-layout-background">
-      <Menu
-        mode="inline"
-        defaultSelectedKeys={[location.pathname]}
-        openKeys={openKeys}
-        style={{ height: '100%', borderRight: 0 }}
-        onOpenChange={(e) => meunOpenChange(e)}
-      >
-        {showMeuns(navMeuns)}
-      </Menu>
-    </Sider>
+    <LayoutContext.Consumer>
+      {(value: any) => {
+        const { menuToggle } = value
+
+        return (
+          <Sider
+            width={200}
+            className="site-layout-background"
+            collapsed={menuToggle}
+          >
+            <Menu
+              mode="inline"
+              defaultSelectedKeys={[location.pathname]}
+              openKeys={openKeys}
+              style={{ height: '100%', borderRight: 0 }}
+              onOpenChange={(e) => meunOpenChange(e)}
+            >
+              {showMeuns(navMeuns)}
+            </Menu>
+          </Sider>
+        )
+      }}
+    </LayoutContext.Consumer>
   )
 }
 
