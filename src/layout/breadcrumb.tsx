@@ -22,7 +22,6 @@ function BreadcrumbCom(props: any) {
 
   const initBread = (pathName: string) => {
     // 设置面包屑
-    console.log(routersArrAuth)
     let trgatItem = routersArrAuth.find((k: any) => k.key === pathName)
     trgatItem &&
       trgatItem.fullTitle &&
@@ -35,9 +34,10 @@ function BreadcrumbCom(props: any) {
         <Breadcrumb.Item>
           <Link to="/">首页</Link>
         </Breadcrumb.Item>
-        {breaNameArr.map((i: string) => (
-          <Breadcrumb.Item key={i}>{i}</Breadcrumb.Item>
-        ))}
+        {breaNameArr.map(
+          (i: string) =>
+            i !== '首页' && <Breadcrumb.Item key={i}>{i}</Breadcrumb.Item>
+        )}
       </Breadcrumb>
     </div>
   )

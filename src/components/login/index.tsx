@@ -45,7 +45,7 @@ function Login(props: any) {
             >
               <Input
                 prefix={<UserOutlined className="site-form-item-icon" />}
-                placeholder="admin/custom"
+                placeholder="admin/any"
               />
             </Form.Item>
 

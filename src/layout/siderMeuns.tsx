@@ -88,7 +88,7 @@ function SiderMeuns(props: Iprops) {
           >
             <Menu
               mode="inline"
-              defaultSelectedKeys={[location.pathname]}
+              selectedKeys={[location.pathname]}
               openKeys={openKeys}
               style={{ height: '100%', borderRight: 0 }}
               onOpenChange={(e) => meunOpenChange(e)}
