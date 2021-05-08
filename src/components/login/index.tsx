@@ -10,7 +10,7 @@ function Login(props: any) {
       const { username } = values
       window.location.href = '/'
       let userInfo = {
-        userauth: username === 'admin' ? 's_plat_327' : null,
+        userauth: username === 'admin' ? 'admin_auth' : null,
         username: username,
       }
       // @ts-ignore
