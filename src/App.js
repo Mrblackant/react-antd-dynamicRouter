@@ -45,8 +45,13 @@ function App(props) {
   const [navMeunsAuth, setNavMeunsConstom] = useState([])
   const [routersArrAuth, setRoutersArrConstom] = useState([])
 
-  const useInfo = JSON.parse(localStorage.getItem('userInfo'))
-  const pathname = window.location.pathname
+  const stringifyUseInfo = localStorage.getItem('userInfo')
+  let useInfo
+  try {
+    useInfo = stringifyUseInfo ? JSON.parse(stringifyUseInfo) : {}
+  } catch (err) {
+    console.log(err)
+  }
 
   useEffect(() => {
     getAuthMeuns()
@@ -67,13 +72,13 @@ function App(props) {
     setNavMeunsConstom(navMeuns)
     setRoutersArrConstom(routersArr)
   }
-  console.log(pathname)
   return (
     <div className="App-layout-wapper">
       {routersArrAuth.length && (
         <context.Provider value={{ navMeunsAuth, routersArrAuth }}>
           <Router>
             <Switch>
+              {/* 此处可增加登录、个人中心等不带左侧菜单的页面*/}
               <Route path="/login" component={Login} />
               <Route path="/404" component={NotFound} />
               <Route component={NormalLayout} />

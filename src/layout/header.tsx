@@ -1,7 +1,7 @@
 import { Layout, Menu, Dropdown } from 'antd'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
+
 import {
-  EditOutlined,
   LogoutOutlined,
   MenuFoldOutlined,
   MenuUnfoldOutlined,
@@ -11,6 +11,7 @@ import { LayoutContext } from './index'
 const { Header } = Layout
 
 function HeaderCom(props: any) {
+  const [useInfo, setUseInfo] = useState({ username: '' })
   const signOut = () => {
     window.location.href = '/login'
   }
@@ -20,18 +21,19 @@ function HeaderCom(props: any) {
         <Menu.Divider />
         <Menu.Item onClick={signOut}>
           {' '}
-          <EditOutlined />
-          用户设置{' '}
-        </Menu.Item>
-        <Menu.Item onClick={signOut}>
-          {' '}
           <LogoutOutlined /> 退出登录
         </Menu.Item>
       </Menu.ItemGroup>
     </Menu>
   )
-  // @ts-ignore
-  const useInfo: any = JSON.parse(localStorage.getItem('userInfo'))
+  useEffect(() => {
+    try {
+      // @ts-ignore
+      setUseInfo(JSON.parse(localStorage.getItem('userInfo')) || {})
+    } catch (err) {
+      console.log(err)
+    }
+  }, [])
 
   return (
     <div className="Head">
@@ -42,7 +44,7 @@ function HeaderCom(props: any) {
             <Header className="header">
               <div className="logo-line" style={{ color: '#fff' }}>
                 <p>
-                  <span>路由生成-DEMO</span>
+                  <span>动态路由-DEMO</span>
                   <span className="top-toggle-icon">
                     {menuToggle ? (
                       <MenuUnfoldOutlined
@@ -53,7 +55,6 @@ function HeaderCom(props: any) {
                     ) : (
                       <MenuFoldOutlined
                         onClick={() => {
-                          console.log(setMenuToggle)
                           setMenuToggle(!menuToggle)
                         }}
                       />

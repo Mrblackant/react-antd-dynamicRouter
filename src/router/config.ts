@@ -4,18 +4,6 @@ import Loadable from './loadable'
 export const NotFound=Loadable('notFound/index')
 export const Login=Loadable('login/index')
 export let navMeuns=[
-    // {
-    //     title:'登录页',
-    //     key:'/login',
-    //     component:Loadable('login/index'),
-    //     hideMeun:true
-    // },
-    // {
-    //     title:'404',
-    //     key:'/404',
-    //     component:Loadable('notFound/index'),
-    //     hideMeun:true
-    // },
     {
         title:'首页',
         key:'/',
@@ -102,7 +90,6 @@ export const authFun=(noShowArr:any[])=>{
         }
     navMeuns=del(navMeuns,noShowArr)
     flattenRoute(navMeuns)
-    console.log(routersArr)
 
     return {
         navMeuns,

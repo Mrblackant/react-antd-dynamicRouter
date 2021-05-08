@@ -1,6 +1,9 @@
+/*
+  路由懒加载 Loadable
+*/
 import Loadable from 'react-loadable'
 import { Loading } from './loading'
-// 懒加载
+
 function loadFn(componentPath) {
   return Loadable({
     loading: Loading,

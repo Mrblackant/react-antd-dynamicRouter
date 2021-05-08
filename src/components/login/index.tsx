@@ -2,16 +2,10 @@ import { Form, Input, Button, Checkbox } from 'antd'
 import { LockOutlined, UserOutlined } from '@ant-design/icons'
 
 import './indec.scss'
-const layout = {
-  labelCol: { span: 8 },
-  wrapperCol: { span: 16 },
-}
-const tailLayout = {
-  wrapperCol: { offset: 8, span: 16 },
-}
 
 function Login(props: any) {
   const onFinish = (values: any) => {
+    // todo-可从接口获取用户信息等
     if (values) {
       const { username } = values
       window.location.href = '/'

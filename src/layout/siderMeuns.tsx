@@ -13,7 +13,6 @@ interface Iprops {
 type Imeun = {
   key: string
 }
-console.log(navMeuns)
 function SiderMeuns(props: Iprops) {
   const { history } = props
   const { location } = history

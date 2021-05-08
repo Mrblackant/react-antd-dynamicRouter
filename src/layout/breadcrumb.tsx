@@ -14,11 +14,7 @@ function BreadcrumbCom(props: any) {
 
   useEffect(() => {
     initBread(location.pathname)
-    // 监听路由
-    props.history.listen((route: any) => {
-      initBread(route.pathname)
-    })
-  }, [])
+  }, [location.pathname])
 
   const initBread = (pathName: string) => {
     // 设置面包屑
