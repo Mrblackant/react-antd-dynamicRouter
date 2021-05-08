@@ -44,6 +44,16 @@ export let navMeuns=[
                 component:Loadable('extension/queryParams')
             },
         ]
+    },{
+        title:'ts',
+        key:'/ts',
+        children:[
+            {
+                title:'拓展-ts',
+                key:'/learnts',
+                component:Loadable('typeScript/index')
+            },
+        ]  
     }
 ]
 

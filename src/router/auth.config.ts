@@ -3,7 +3,7 @@
 */
 const authConfig = {
   pages: 'admin_auth',
-  extension:'admin_auth'
+  extension:'admin_auth',
 }
 
 export default authConfig

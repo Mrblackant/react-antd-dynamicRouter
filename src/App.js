@@ -74,7 +74,7 @@ function App(props) {
   }
   return (
     <div className="App-layout-wapper">
-      {routersArrAuth.length && (
+      {routersArrAuth.length ? (
         <context.Provider value={{ navMeunsAuth, routersArrAuth }}>
           <Router>
             <Switch>
@@ -85,7 +85,7 @@ function App(props) {
             </Switch>
           </Router>
         </context.Provider>
-      )}
+      ) : null}
     </div>
   )
 }
