@@ -44,7 +44,7 @@ function HeaderCom(props: any) {
             <Header className="header">
               <div className="logo-line" style={{ color: '#fff' }}>
                 <p>
-                  <span>动态路由-DEMO</span>
+                  <span>GAIA-DEMO</span>
                   <span className="top-toggle-icon">
                     {menuToggle ? (
                       <MenuUnfoldOutlined
