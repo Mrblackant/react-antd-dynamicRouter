@@ -26,7 +26,7 @@ function SelectDemo(props: SelectProps) {
   }
   return (
     <div>
-      <Select defaultValue={defaultValue} defaultOpen style={{ width: '100%' }}>
+      <Select defaultValue={defaultValue} style={{ width: '100%' }}>
         {renderOpts()}
       </Select>
     </div>
