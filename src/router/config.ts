@@ -75,8 +75,14 @@ export let navMeuns=[
                 key:'/gaia-mall',
                 component:Loadable('gaia-mall/index')
             },
+            {
+                title:'entry',
+                key:'/entry',
+                component:Loadable('gaia-mall/entry/index','jsx')
+            },
         ]  
-    }
+    },
+   
 ]
 
 
