@@ -54,6 +54,28 @@ export let navMeuns=[
                 component:Loadable('typeScript/index')
             },
         ]  
+    },
+    {
+        title:'some',
+        key:'/some',
+        children:[
+            {
+                title:'some',
+                key:'/some',
+                component:Loadable('something/index','jsx')
+            },
+        ]  
+    },
+    {
+        title:'gaia-mall',
+        key:'/gaia-mall',
+        children:[
+            {
+                title:'gaia-mall',
+                key:'/gaia-mall',
+                component:Loadable('gaia-mall/index')
+            },
+        ]  
     }
 ]
 

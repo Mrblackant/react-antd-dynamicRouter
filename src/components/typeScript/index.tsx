@@ -1,151 +1,131 @@
-import { useEffect, useReducer, useState, useMemo } from 'react'
+import React, { useEffect, useReducer, useState, useMemo } from 'react'
 import CustomSelect, { selectOptionType } from './children/select'
 import { Button, Row, Col, Space } from 'antd'
+import Test from './children/test'
 import './index.scss'
-const log = (n?: any) => {
-  console.log('')
-  console.log(n)
-}
-let getCount = 0
 
-// function createArray<T>(length: number, value: T): Array<T> {
-//   let result: T[] = []
-//   for (let i = 0; i < length; i++) {
-//     result[i] = value
-//   }
-//   return result
-// }
-type ActionT = {
-  type: string
-}
-
-function TsDemo<T>() {
+function TsDemo<T>({ initialCount = 0 }) {
   const [getOpts, setOpts] = useState<selectOptionType[]>([])
   const [selectInitVal, setSelectInitVal] = useState<any>('')
   const [cickCount, setClickCount] = useState<number>(0)
 
-  const addFunc = () => {
-    let countNum = cickCount
-    setClickCount(countNum + 1)
-  }
+  // Array.from([...Array(100)].keys())
+  // Array.from({length:100},(v,k)=>k)
+  // Array(100).fill(undefined).map(v=>v)
 
-  const [getSubCount, dispatch] = useReducer(
-    (state: number, action: {type:string}) => {
-      const { type } = action
-      console.log('...进入reducer')
-      addFunc()
-      switch (type) {
-        case 'add':
-          console.log('add...')
-          return (state += 1)
-        case 'sub':
-          console.log('...sub...')
-          return state - =1
-        default:
-          console.log('...defa..ult..')
-          return state
-      }
-    },
-    0
+  const [listArr, setList] = useState(
+    Array(1000)
+      .fill(undefined)
+      .map((v, i) => i)
   )
 
-  const renderOptsData = () => {
-    getCount += 1
-    let tempData: selectOptionType[] = []
-    tempData.push({
-      label: getCount,
-      value: `第${getCount}名`,
-    })
-    setOpts(getOpts.concat(tempData))
-  }
-
-  useEffect(() => {
-    if (getOpts && getOpts.length === 1) {
-      setSelectInitVal(getOpts[0].value)
+  function countReducer(state: number, action: { type: string }) {
+    console.log('...load')
+    switch (action.type) {
+      case 'add':
+        return state + 1
+      case 'minus':
+        return state - 1
+      case 'count':
+        return getYourCount()
+      default:
+        return state
     }
-  }, [getOpts])
+  }
 
-  type StudentsInfo = Array<{ id: number; name: string }>
-  // test-one
-  const testOneFn = (len: number, value: string): StudentsInfo => {
-    let result: StudentsInfo = []
-    result = Array.from({ length: len }, (v, k) => k).map((i) => {
-      return { id: i, name: `${value + i}` }
-    })
-    return result
+  const getYourCount = () => {
+    let countOne = sigelCount(1)
+    let countTwo = sigelCount(2)
+    return countOne + countTwo
   }
-  // test-ont-T
-  const testOneFnT = (len: number, value: any): Array<T> => {
-    let result: T[] = []
-    for (let i = 0; i < len; i++) {
-      result[i] = value
-    }
-    return result
-  }
-  // reduce
-  const tempA = () => {
-    let arr = [12, 9, 90, 11, 33]
-    let n = 0
-    let result = arr.reduce((sum, cur, index, all) => {
-      if (n < 2) {
-        console.log('sum', sum) //上一次循环的和,没有第二个参数默认数组第一项
-        console.log('cur', cur) //当前数组值
-        console.log('index', index) //index,没二参从1开始，否则从0
-        console.log('all', all) //整个数组项
-        console.log('')
-      }
-      n += 1
-      return sum + cur
-    }, 0)
-    log(result)
-  }
-  // tempA()
-  useEffect(() => {
-    // let tOneResult = testOneFn(3, '学号')
-    // log(tOneResult)
-    // let resultT = testOneFnT(3, 'x')
-    // log(resultT)
-    //
-  }, [])
 
-  const countClickTime = useMemo(() => {
-    return `点击次数: ${cickCount}`
-  }, [cickCount])
+  const sigelCount = (baseNum: number = 0) => {
+    return baseNum + 3
+  }
+  // const addFunc = () => {
+  //   let countNum = cickCount
+  //   setClickCount(countNum + 1)
+  // }
+
+  const [getSubCount, dispatch] = useReducer(countReducer, initialCount)
+
+  // const countClickTime = useMemo(() => {
+  //   return `点击次数: ${cickCount}`
+  // }, [cickCount])
+  console.log(listArr)
   return (
     <div>
-      <Row>
-        <Col span={8}>
-          <CustomSelect defaultValue={selectInitVal} optsData={getOpts} />
-        </Col>
-        <Col span={8}>
-          <Button onClick={renderOptsData}>增加选项</Button>
-        </Col>
-      </Row>
-      <Row className="has_margin">
-        <Col span={8}>人数统计: {getSubCount}</Col>
-        <Col span={8}>
-          <Space>
-            <Button
-              type="primary"
-              onClick={() => {
-                dispatch({ type: 'add' })
-              }}
-            >
-              增加
-            </Button>
-            <Button
-              onClick={() => {
-                dispatch({ type: 'sub' })
-              }}
-            >
-              减少
-            </Button>
-            <span>{countClickTime}</span>
-          </Space>
-        </Col>
-      </Row>
+      <div>
+        <p>Count: {getSubCount}</p>
+        <Button
+          onClick={() => {
+            dispatch({ type: 'add' })
+          }}
+        >
+          点击+1
+        </Button>
+        <Button
+          onClick={() => {
+            dispatch({ type: 'minus' })
+          }}
+        >
+          点击-1
+        </Button>
+
+        <Button
+          onClick={() => {
+            setClickCount((cickCount) => cickCount + 1)
+          }}
+        >
+          得到总数: {cickCount}
+          异步可中端
+        </Button>
+        <Button
+          onClick={() => {
+            setList([...listArr, 1993])
+          }}
+        >
+          尝试增加
+        </Button>
+      </div>
+      {/*  */}
+      <div
+        style={{ height: '200px', overflow: 'auto', border: '1px solid red' }}
+      >
+        <input />
+        <ul>
+          {listArr.map((i) => (
+            <li key={i}>第{i}行</li>
+          ))}
+        </ul>
+      </div>
     </div>
   )
+}
+
+class AppClass extends React.Component {
+  state = {
+    name: 'liki',
+  }
+  render() {
+    const { name } = this.state
+    return (
+      <>
+        <p>测试人员名称:{name}</p>
+        <button
+          onClick={() =>
+            this.setState({
+              name: name.slice(0, 4) + ' : ' + new Date().getTime(),
+            })
+          }
+        >
+          change
+        </button>
+        <h1>test</h1>
+        <Test />
+      </>
+    )
+  }
 }
 
 export default TsDemo

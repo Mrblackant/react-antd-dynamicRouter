@@ -1,0 +1,52 @@
+.settlemen-wapper {
+  min-height: 500px;
+  border: 1px solid red;
+  .settlemen-inner {
+    margin: 0 auto;
+    text-align: center;
+    width: 800px;
+    background-color: #fff;
+    min-height: 656px;
+    width: 800px;
+    background: #ffffff;
+    box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.06),
+      0 4px 12px -11px rgba(0, 0, 0, 0.06), 0 8px 18px 0 rgba(0, 0, 0, 0.12);
+    border-radius: 8px;
+    background-color: #ffffff;
+    box-sizing: border-box;
+    padding: 160px 140px 80px;
+    p.settlemen-title {
+      font-size: 36px;
+      font-weight: bold;
+      margin-bottom: 40px;
+    }
+    Button.settlemen-btn {
+      height: 36px;
+      width: 160px;
+      border-radius: 4px;
+      margin-bottom: 138px;
+    }
+    .center-div {
+      font-size: 16px;
+      font-weight: normal;
+      margin-bottom: 34px;
+    }
+    .icon-box {
+      width: 72px;
+      height: 72px;
+      display: block;
+      border: 1px solid red;
+    }
+    .info-box {
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      .info-text {
+        color: #0073ff;
+        margin-top: 11px;
+      }
+    }
+  }
+}
