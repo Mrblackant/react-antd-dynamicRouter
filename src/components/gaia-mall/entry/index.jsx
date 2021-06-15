@@ -29,7 +29,7 @@ import { Alert } from 'antd'
 import '../index.scss'
 
 const { Option } = Select
-const MAX_IMAGES_NUM = 6
+const MAX_IMAGES_NUM = 1
 
 const renderTitle = () => (
   <Alert
@@ -221,6 +221,10 @@ function EntryForm(props, ref) {
     }
   }
 
+  function handleRefuse() {
+    setVisible(false)
+    // history.push('/')
+  }
   function handleAddressChange(addressInfo) {
     // 更新表单值
     setFieldsValue({ district: getCompanyDistrictId(addressInfo) })
