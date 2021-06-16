@@ -41,6 +41,7 @@ const renderTitle = () => (
 function EntryForm(props, ref) {
   const [form] = Form.useForm()
   const [loading, setLoading] = useState(false) //loading
+  const [getSome, setSome] = useState(false) //loading
   const [applyConfig, setApplyConfig] = useState({})
   const [agreementArticle, setAgreementArticle] = useState([])
   const [applyDetail, setApplyDetail] = useState({}) //form初始内容
@@ -710,9 +711,16 @@ function EntryForm(props, ref) {
   }
   const { companyItem, businessInfoItem, billingInfoItem, expandInfoItem } =
     formContents()
+  const changs = () => {
+    setSome((prev) => {
+      console.log('prev', prev)
+      return true
+    })
+  }
   return (
     <div className="entryFrom-wapper">
       <Spin spinning={loading}>
+        <Button onClick={changs}>测试</Button>
         <div className="head-img"></div>
         <div className="form-area">
           {renderTitle()}

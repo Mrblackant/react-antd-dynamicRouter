@@ -53,7 +53,7 @@ class MyReact extends React.Component {
       return (
         <div>
           <p>父组件state-textNUm: {textNUm}</p>
-          <button onClick={() => this.makeCli()}>增加</button>
+          <button onClick={this.makeCli}>增加</button>
           <ChildOne parentNum={textNUm} />
         </div>
       )
