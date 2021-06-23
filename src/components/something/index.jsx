@@ -1,6 +1,6 @@
 import React from 'react'
 import ChildOne from './children/childOne'
-// import './children/onlyRun'
+import './children/onlyRun'
 
 class MyReact extends React.Component {
   constructor(props) {

@@ -64,6 +64,11 @@ export let navMeuns=[
                 key:'/some',
                 component:Loadable('something/index','jsx')
             },
+            {
+                title:'reactEvent',
+                key:'/reactEvent',
+                component:Loadable('something/reactEvent','jsx')
+            },
         ]  
     },
     {
