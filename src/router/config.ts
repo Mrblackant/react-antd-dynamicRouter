@@ -74,6 +74,16 @@ export let navMeuns = [
                 key: '/redux',
                 component: Loadable('something/redux/index', 'jsx')
             },
+            {
+                title: 'context',
+                key: '/context',
+                component: Loadable('something/context/index', 'jsx')
+            },
+            {
+                title: 'ref',
+                key: '/ref',
+                component: Loadable('something/ref/index', 'jsx')
+            },
         ]
     },
     {
