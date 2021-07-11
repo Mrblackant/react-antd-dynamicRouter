@@ -1,17 +1,38 @@
-import React, { useState, useRef } from 'react'
-import ChildOne from './children/componetOne'
+import React, { useState, useRef, useEffect } from 'react'
+import { textChangeRangeIsUnchanged } from 'typescript';
+// import ChildOne from './children/componetOne'
 
-function RefDemo () {
-    const refOne = useRef(null)
-    return (
-        <div>
-            <button onClick={() => {
-                console.log(refOne)
-                const { handleChild } = refOne.current
-                handleChild()
-            }}>控制子组件的num</button>
-            <ChildOne ref={refOne} />
-        </div>
-    )
+
+// 类组件，ref的current为当前dom
+class RefDemo extends React.Component {
+
+    constructor(props) {
+        super(props)
+        // this.setRef = React.createRef()
+    }
+    componentDidMount () {
+        // console.log(this.setRef)
+        // this.setRef.current.focus();
+        console.log(this.getRef)
+        this.getRef.focus();
+    }
+
+    render () {
+        // return <input ref={this.setRef} />;
+        return <input ref={(e) => {
+            this.getRef = e
+        }} />;
+    }
 }
-export default RefDemo
+
+const RefFunDemo = () => {
+    const setRef = React.createRef()
+    useEffect(() => {
+        console.log('func setRef', setRef)
+        setRef.current.focus()
+
+    })
+    return <input ref={setRef} />
+}
+
+export default RefFunDemo

@@ -1,17 +1,20 @@
 .App-layout-wapper {
-  height: 100%;
-  .bread-wapper {
-    .top-meun {
-      margin: 16px 0;
-      .ant-breadcrumb-link {
-        // cursor: pointer;
-      }
+    height: 100%;
+    .bread-wapper {
+        .top-meun {
+            margin: 16px 0;
+            .ant-breadcrumb-link {
+                // cursor: pointer;
+            }
+        }
     }
-  }
-  .site-layout-background {
-    background: #fff;
-  }
+    .site-layout-background {
+        background: #fff;
+    }
+    .App-layout-wapper {}
+}
 
-  .App-layout-wapper {
-  }
+.wapper_border {
+    padding: 10px;
+    border: 2px solid red;
 }

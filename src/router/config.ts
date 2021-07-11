@@ -80,9 +80,34 @@ export let navMeuns = [
                 component: Loadable('something/context/index', 'jsx')
             },
             {
+                title: 'useRef',
+                key: '/useRef',
+                component: Loadable('something/useRef/index', 'jsx')
+            },
+            {
                 title: 'ref',
                 key: '/ref',
                 component: Loadable('something/ref/index', 'jsx')
+            },
+            {
+                title: 'useReducer',
+                key: '/useReducer',
+                component: Loadable('something/useReducer/index', 'jsx')
+            },
+            {
+                title: '生命周期',
+                key: '/timeLine',
+                component: Loadable('something/timeLine/index', 'jsx')
+            },
+            {
+                title: 'memo',
+                key: '/reactMemo',
+                component: Loadable('something/reactMemo/index', 'jsx')
+            },
+            {
+                title: 'pure组件',
+                key: '/pureComponent',
+                component: Loadable('something/pureComponent/index', 'jsx')
             },
         ]
     },

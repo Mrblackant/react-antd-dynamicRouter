@@ -1,5 +1,6 @@
 
-import { Consumer } from '../index'
+import { useContext } from 'react'
+import { AppContext, Consumer } from '../index'
 function ChildOne (props) {
     console.log(props)
     return (
@@ -16,4 +17,16 @@ function ChildOne (props) {
         </Consumer>
     )
 }
-export default ChildOne
+function ChildOther () {
+    const { getNum } = useContext(AppContext)
+    console.log('getNum', getNum)
+    return (
+        <p>
+            子组件使用 useContext:
+            {
+                getNum
+            }
+        </p>
+    )
+}
+export default ChildOther//ChildOne
