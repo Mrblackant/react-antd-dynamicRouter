@@ -1,7 +1,6 @@
 
 import { useState, forwardRef, useImperativeHandle } from 'react'
 const ChildOne = forwardRef((props, ref) => {
-    console.log(props, ref)
     const [num, setNum] = useState(0)
     const handleChild = () => {
         setNum(num + 1)

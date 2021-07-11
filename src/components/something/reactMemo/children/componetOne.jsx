@@ -1,9 +1,10 @@
 
-import React, { useState, forwardRef, useImperativeHandle } from 'react'
+import React from 'react'
 const ChildOne = ({ nums, objs }) => {
     console.log('子组件被渲染')
     return (
         <div className="wapper_border">
+            <h3>子组件</h3>
             <p>父元素num: {nums}</p>
             <p>父元素objs: {objs.deepObj.deepAge}</p>
         </div>

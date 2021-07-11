@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import ChildOne from './children/componetOne'
 
+
 const ReactMemo = () => {
     const [count, setCount] = useState(0)
     const [num, setNum] = useState(0)
@@ -23,9 +24,10 @@ const ReactMemo = () => {
         <div>
             <p>count:{count}</p>
             <p>num:{num}</p>
+            <p>deepAge:{tempObj.deepObj.deepAge}</p>
             <button onClick={() => { setCount(count + 1) }}>count加1</button>
             <button onClick={() => { setNum(num + 1) }}>num加1</button>
-            <button onClick={handleChangeObj}>修改对象age+1</button>
+            <button onClick={handleChangeObj}>修改对象deepAge+1</button>
             <ChildOne nums={num} objs={tempObj} />
         </div>
     )

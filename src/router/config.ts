@@ -109,6 +109,11 @@ export let navMeuns = [
                 key: '/pureComponent',
                 component: Loadable('something/pureComponent/index', 'jsx')
             },
+            {
+                title: 'useCallback&useMemo',
+                key: '/useCalluseMemo',
+                component: Loadable('something/useCallBackUseMemo/index', 'jsx')
+            },
         ]
     },
     {
